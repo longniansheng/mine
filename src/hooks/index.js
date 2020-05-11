@@ -1,3 +1,4 @@
 import useMineHooks from "./useMineHooks";
+import useContextMenuHooks from "./useContextMenuHooks";
 
-export default useMineHooks;
+export { useMineHooks, useContextMenuHooks };

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import MineHorList from "./components/MineHorList";
-import useMineHooks from "./hooks";
+import { useMineHooks, useContextMenuHooks } from "./hooks";
 
 const Contaienr = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ function App() {
     data: { mines, visited, gameOver },
     handleClick,
   } = useMineHooks();
-
+  useContextMenuHooks();
   return (
     <>
       <Contaienr>

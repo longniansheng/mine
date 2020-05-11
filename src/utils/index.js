@@ -1,4 +1,4 @@
 import { MINE_NONE, MINE_ACTIVED, MINE_FLAG, MINE_DOUBT } from "./constants";
-import { initMines } from "./handler";
+import { initMines, initPos } from "./handler";
 
-export { MINE_NONE, MINE_ACTIVED, MINE_FLAG, MINE_DOUBT, initMines };
+export { MINE_NONE, MINE_ACTIVED, MINE_FLAG, MINE_DOUBT, initMines, initPos };

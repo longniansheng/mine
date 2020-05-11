@@ -15,14 +15,13 @@ export function handleLeft(draft, action) {
   }
   // 如果是雷，直接结束游戏
   else if (mines[x][y] === 9) {
+    visited[`${x},${y}`] = MINE_ACTIVED;
     draft.gameOver = true;
     return draft;
+  } else {
+    // TODO: 解决递归的
+    visitPosWithRecursion(draft, [x, y]);
   }
-  // 如果是非0数字，将其置为已点击
-  else if (mines[x][y] !== 0) {
-    visited[`${x},${y}`] = MINE_ACTIVED;
-  }
-
   return draft;
 }
 
@@ -60,3 +59,64 @@ export function handleRight(draft, action) {
  * @param {*} action 动作触发的数据
  */
 export function handleBoth(draft, action) {}
+
+export function visitPosWithRecursion(draft, pos) {
+  const { mines } = draft;
+  const [x, y] = pos;
+  const vLen = mines.length;
+  const hLen = mines[0].length;
+
+  // 已标记，不在执行后续判断
+  if (!!draft.visited[`${x},${y}`]) {
+    return;
+  }
+  // 未标记，且为数字，显示数字结束
+  else if (!!mines[x][y]) {
+    draft.visited[`${x},${y}`] = MINE_ACTIVED;
+    return;
+  }
+
+  draft.visited[`${x},${y}`] = MINE_ACTIVED;
+
+  // 上
+  if (x - 1 >= 0) {
+    visitPosWithRecursion(draft, [x - 1, y]);
+  }
+  // 下
+  if (x + 1 < vLen) {
+    visitPosWithRecursion(draft, [x + 1, y]);
+  }
+
+  // 左
+
+  if (y - 1 >= 0) {
+    visitPosWithRecursion(draft, [x, y - 1]);
+  }
+  // 右
+
+  if (y + 1 < hLen) {
+    visitPosWithRecursion(draft, [x, y + 1]);
+  }
+
+  // 左上
+  if (x - 1 >= 0 && y - 1 >= 0) {
+    visitPosWithRecursion(draft, [x - 1, y - 1]);
+  }
+
+  // 右下
+
+  if (x + 1 < vLen && y + 1 < hLen) {
+    visitPosWithRecursion(draft, [x + 1, y + 1]);
+  }
+
+  // 右上
+  if (x - 1 >= 0 && y + 1 < hLen) {
+    visitPosWithRecursion(draft, [x - 1, y + 1]);
+  }
+
+  // 左下
+
+  if (x + 1 < vLen && y - 1 < hLen) {
+    visitPosWithRecursion(draft, [x + 1, y - 1]);
+  }
+}

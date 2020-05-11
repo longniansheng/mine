@@ -45,7 +45,10 @@ export default function MineItem(props) {
   return (
     <Container
       status={item}
-      onMouseDown={(e) => handleClick(e, x, y)}
+      onMouseDown={(e) => {
+        e.persist();
+        handleClick(e, x, y);
+      }}
       visited={isVisited}
     >
       {renderIcon()}

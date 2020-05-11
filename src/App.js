@@ -10,7 +10,7 @@ const Contaienr = styled.div`
 
 function App() {
   const {
-    data: { mines, visited, gameOver },
+    data: { mines, visited },
     handleClick,
   } = useMineHooks();
   useContextMenuHooks();

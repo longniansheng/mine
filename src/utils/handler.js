@@ -55,11 +55,12 @@ export function shuffle(arr, len) {
  * @param {*} danPosArr 地雷的坐标
  */
 export function checkAndVoluation(initArr, danPosArr) {
-  const hLen = initArr.length;
-  const vLen = initArr[0].length;
+  const vLen = initArr.length;
+  const hLen = initArr[0].length;
 
   danPosArr.forEach(([x, y]) => {
     initArr[x][y] = 9;
+
     // 上左
     if (x - 1 >= 0 && y - 1 >= 0 && initArr[x - 1][y - 1] !== 9) {
       initArr[x - 1][y - 1] += 1;
@@ -85,7 +86,7 @@ export function checkAndVoluation(initArr, danPosArr) {
       initArr[x + 1][y - 1] += 1;
     }
     // 下
-    if (x + 1 < vLen && initArr[x + 1][y]) {
+    if (x + 1 < vLen && initArr[x + 1][y] !== 9) {
       initArr[x + 1][y] += 1;
     }
     // 右下
@@ -93,6 +94,7 @@ export function checkAndVoluation(initArr, danPosArr) {
       initArr[x + 1][y + 1] += 1;
     }
   });
-
+  initArr.forEach((i) => console.log(i.join("  ")));
+  console.log("-------------");
   return initArr;
 }

@@ -1,4 +1,4 @@
-import { useReducer, useMemo, useState } from "react";
+import { useReducer, useMemo } from "react";
 import _ from "lodash";
 import reducer from "./reducer";
 import { initMines } from "../utils";

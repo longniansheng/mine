@@ -1,8 +1,10 @@
+import { MINE_NONE, MINE_ACTIVED, MINE_FLAG, MINE_DOUBT } from "../utils";
+
 export function handleLeft(draft, action) {
   const [x, y] = action.payload.pos;
-  const { mines } = draft;
+  const { mines, visited } = draft;
 
-  draft.visited[`${x},${y}`] = true;
+  visited[`${x},${y}`] = MINE_ACTIVED;
 
   // 如果是雷，直接结束游戏
   if (mines[x][y] === 9) {
@@ -14,8 +16,17 @@ export function handleLeft(draft, action) {
 }
 export function handleRight(draft, action) {
   const [x, y] = action.payload.pos;
-  const { mines } = draft;
-  mines[x][y] = -2;
+  const { visited } = draft;
+
+  if (visited[`${x},${y}`] === MINE_ACTIVED) return;
+
+  if (visited[`${x},${y}`] === MINE_DOUBT) {
+    visited[`${x},${y}`] = MINE_NONE;
+  } else if (visited[`${x},${y}`] === MINE_FLAG) {
+    visited[`${x},${y}`] = MINE_DOUBT;
+  } else {
+    visited[`${x},${y}`] = MINE_FLAG;
+  }
 
   return draft;
 }

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { FaBomb } from "react-icons/fa";
-import { MdFlag } from "react-icons/md";
+import { MdFlag, MdHelpOutline } from "react-icons/md";
+import { MINE_ACTIVED, MINE_FLAG, MINE_DOUBT } from "../utils";
 
 const Container = styled.div`
   width: 40px;
@@ -19,8 +20,9 @@ const Container = styled.div`
 `;
 export default function MineItem(props) {
   const { item, x, y, handleClick, visited } = props;
-  const isVisited = visited[`${x},${y}`] === "1";
-  const flag = visited[`${x},${y}`] === "-1";
+  const isVisited = visited[`${x},${y}`] === MINE_ACTIVED;
+  const flag = visited[`${x},${y}`] === MINE_FLAG;
+  const doubt = visited[`${x},${y}`] === MINE_DOUBT;
 
   const renderIcon = () => {
     if (flag) {
@@ -33,6 +35,8 @@ export default function MineItem(props) {
       } else {
         return "";
       }
+    } else if (doubt) {
+      return <MdHelpOutline />;
     } else {
       return "";
     }

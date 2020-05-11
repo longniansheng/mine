@@ -60,6 +60,11 @@ export function handleRight(draft, action) {
  */
 export function handleBoth(draft, action) {}
 
+/**
+ * 递归实现点击事件
+ * @param {*} draft
+ * @param {*} pos
+ */
 export function visitPosWithRecursion(draft, pos) {
   const { mines } = draft;
   const [x, y] = pos;

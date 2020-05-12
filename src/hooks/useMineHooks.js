@@ -16,12 +16,15 @@ export default function useMineHooks() {
     const buttons = e.buttons;
     switch (buttons) {
       case 1:
+        console.log("step in left click");
         dispatch({ type: "LEFT_CLICK", payload: { pos: [x, y] } });
         break;
       case 2:
+        console.log("step in right click");
         dispatch({ type: "RIGHT_CLICK", payload: { pos: [x, y] } });
         break;
       case 3:
+        console.log("step in both click");
         dispatch({ type: "BOTH_CLICK", payload: { pos: [x, y] } });
         break;
       default:

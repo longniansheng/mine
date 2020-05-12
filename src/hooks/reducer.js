@@ -5,6 +5,7 @@ const mineReducer = (state, action) => {
     case "LEFT_CLICK":
       return handleLeft(state, action.payload.pos);
     case "RIGHT_CLICK":
+      console.log("step in right reducer");
       return handleRight(state, action);
     case "BOTH_CLICK":
       return handleBoth(state, action);

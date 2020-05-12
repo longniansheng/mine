@@ -44,6 +44,7 @@ export function handleLeft(state, pos) {
  * @param {*} action 动作触发的数据
  */
 export function handleRight(state, action) {
+  console.log("step in handleright function");
   const [x, y] = action.payload.pos;
   const { visited } = state;
 
@@ -71,4 +72,6 @@ export function handleRight(state, action) {
  * @param {*} state 缓存的状态
  * @param {*} action 动作触发的数据
  */
-export function handleBoth(state, action) {}
+export function handleBoth(state, action) {
+  return state;
+}

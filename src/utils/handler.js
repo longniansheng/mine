@@ -94,7 +94,6 @@ export function checkAndVoluation(initArr, danPosArr) {
       initArr[x + 1][y + 1] += 1;
     }
   });
-  initArr.forEach((i) => console.log(i.join("  ")));
-  console.log("-------------");
+
   return initArr;
 }
